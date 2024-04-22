@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podcaster</title>
+
+    <link rel="stylesheet" href="static\css\style.css">
+</head>
+<body>
+    <h1>Podcaster</h1>
+
+    <div id="article-content">
+
+    </div>
+    
+    <button id="generate-article-btn">Generate Article</button>
+
+    <script>
+        function fetchAndDisplayArticle() {
+            fetch('/generate_article')
+                .then(response => response.json())
+                .then(data => {
+                    const articleContent = data.article;
+
+                    document.getElementById('article-content').innerHTML = articleContent;
+                })
+                .catch(error => {
+                    console.error('Error fetching article:', error);
+                });
+        }
+
+        
+        fetchAndDisplayArticle();
+
+    </script>
+
+    
+</body>
+</html>
