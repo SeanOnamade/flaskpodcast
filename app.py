@@ -5,20 +5,23 @@ import time
 import hmac
 import hashlib
 import requests
-
+import config
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/') # home page
+
 def index():
     return render_template('index.html')
 
 @app.route("/generate_article")
+
 def generate_article():
     # Podcast Index API credentials
 
-    api_key = "in notes"
-    api_secret = "in notes"
+    api_key = config.API_KEY
+    api_secret = config.API_SECRET
+    openai_api_key = config.OPENAI_API_KEY
     current_time = str(int(time.time()))
     encoded_api_key = api_key.encode('utf-8')
     encoded_api_secret = api_secret.encode('utf-8')
@@ -62,7 +65,7 @@ def generate_article():
                     file.write(audio_response.content)
 
                 # Transcribe audio using OpenAI
-                client = OpenAI(api_key="in notes")
+                client = OpenAI(api_key=openai_api_key)
                 audio_file = open("speech.mp3", "rb")
                 transcription = client.audio.transcriptions.create(model="whisper-1", file=audio_file)
                 podcast_transcript = transcription.text
