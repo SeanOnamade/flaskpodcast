@@ -10,15 +10,15 @@ import config
 app = Flask(__name__)
 
 @app.route('/') # home page
-
 def index():
+    # app.logger.debug('Processing index request...')
     return render_template('index.html')
 
 @app.route("/generate_article")
-
 def generate_article():
-    # Podcast Index API credentials
+    # app.logger.debug('Processing generate_article request...')
 
+    # Podcast Index API credentials
     api_key = config.API_KEY
     api_secret = config.API_SECRET
     openai_api_key = config.OPENAI_API_KEY

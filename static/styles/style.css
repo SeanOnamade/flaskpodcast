@@ -1,0 +1,21 @@
+html {
+    height: 100%;
+    width: 100%;
+  }
+
+* { /* universal selector */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+h1 {
+    text-align: center;
+    color: red;
+}
+
+#generate-article-btn {
+    display: block;
+    margin: 0 auto;
+}
