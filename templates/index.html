@@ -5,25 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PodChat</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
  
-    <style>
-        /* Center the button horizontally */
-        #generate-article-btn {
-            display: block;
-            color: red;
-            margin: 0 auto;
-        }
-    </style>
 </head>
 <body>
-    <div class="header">
-        <h1 class="title">Podcaster</h1>
+    <header>
+        <div class="container">
+            <nav id="main-nav" class="flex items-center space-between">
+                
+                <div class="left flex items-center">
+                    
+                    <div>
+                        <h1 class="title">PodChat</h1>
+                        
+                    </div>
+                </div>
+
+                <div class="right">
+                    <a href="#">
+                        <button class="btn btn-primary">Menu</button>
+                    </a>
+                    
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="post-content">
+    <div class="post-header container">
+        <div class="title-and-image flex">
+            <img src="static\styles\images\coverart.jpg" height="50px"> <!-- images must be in static ig -->
+            <h1>Everybody's Crazy!</h1>
+        </div>
+        <hr class="solid">
     </div>
-    <div id="article-content">
-    </div>
+    <div id="article-content" class="main-content container">
     
-    <button id="generate-article-btn">Generate Article</button>
+    <!-- <button id="generate-article-btn" class="btn btn-primary">Generate Article</button> -->
 
     <script>
         function fetchAndDisplayArticle() {
@@ -38,9 +61,15 @@
                     console.error('Error fetching article:', error);
                 });
         }
-        // fetchAndDisplayArticle();
-        document.getElementById('generate-article-btn').addEventListener('click', fetchAndDisplayArticle); /* 14 seconds */
+        fetchAndDisplayArticle();
+        // document.getElementById('generate-article-btn').addEventListener('click', fetchAndDisplayArticle); /* 14 seconds */
 
     </script>
+
+    </div> <!-- article content -->
+
+    </div>
+
+
 </body>
 </html>
