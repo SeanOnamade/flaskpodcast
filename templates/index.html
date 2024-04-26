@@ -49,16 +49,33 @@
         <hr class="solid">
     </div>
     <div id="article-content" class="main-content container">
+        <div id="loading"></div> <!--Come figure this out-->
     
     <!-- <button id="generate-article-btn" class="btn btn-primary">Generate Article</button> -->
 
     <script>
+
+        const loader = document.querySelector("#loading");
+
+        function displayLoading() {
+            loader.classList.add("display");
+            // setTimeout(() => {
+            //     loader.classList.remove("display");
+            // }, 5000);
+        }
+
+        function hideLoading() {
+            loader.classList.remove("display");
+        }
+
         function fetchAndDisplayArticle() {
+            displayLoading();
             fetch('/generate_article')
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
                     const articleContent = data.article;
+                    hideLoading;
                     document.getElementById('article-content').innerHTML = articleContent;
                 })
                 .catch(error => {
