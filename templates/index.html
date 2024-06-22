@@ -48,6 +48,14 @@
         </div>
         <hr class="solid">
     </div>
+    <div class="details container">
+        <a id="episode-link" href="" target="_blank">
+            <h2 id="episode-title"></h2>    
+        </a>
+        <h3 id="episode-author"></h3>
+        <h3 id="episode-date"></h3>
+    </div>
+    <hr class="solid">
     <div id="article-content" class="main-content container">
         <div id="loading"></div> <!--Come figure this out-->
     
@@ -74,9 +82,40 @@
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    const articleContent = data.article;
+                    // const articleContent = data.article;
+                    const title = data.ep_title;
+                    const link = data.ep_link;
+                    const author = data.ep_author;
+                    const imgLink = data.ep_image;
+                    const time = data.ep_unix_time;
+                    const article = data.generated_article;
                     hideLoading;
-                    document.getElementById('article-content').innerHTML = articleContent;
+                    document.getElementById('episode-title').innerHTML = title;
+                    document.getElementById('episode-link').setAttribute('href', link);
+                    document.getElementById('episode-author').innerHTML = author;
+
+                    var dateTime = new Date(time * 1000); 
+
+                    var months = [
+                        "January",
+                        "February",
+                        "March",
+                        "April",
+                        "May",
+                        "June",
+                        "July",
+                        "August",
+                        "September",
+                        "October",
+                        "November",
+                        "December"
+                    ];
+
+                    var date = months[dateTime.getMonth()] + ' ' + dateTime.getDate() + ', ' + dateTime.getFullYear();
+                    // var date = new Date(time * 1000); 
+
+                    document.getElementById('episode-date').innerHTML = date;
+                    document.getElementById('article-content').innerHTML = article;
                 })
                 .catch(error => {
                     console.error('Error fetching article:', error);

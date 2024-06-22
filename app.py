@@ -44,6 +44,14 @@ def generate_article():
     if response.status_code == 200 and json_response.get('status') == 'true':
         # Extract feed ID from the search results
         feed_id = json_response['feeds'][0]['id']
+
+        ep_details = json_response['feeds'][0]
+
+        ep_title = ep_details['title']
+        ep_link = ep_details['link']
+        ep_author = ep_details['author']
+        ep_image = ep_details['artwork']
+        ep_unix_time = ep_details['newestItemPubdate']
         
         # Construct URL to fetch episodes
         episodes_url = f"https://api.podcastindex.org/api/1.0/episodes/byfeedid?id={feed_id}"
@@ -89,8 +97,18 @@ def generate_article():
                 # Extract generated article
                 generated_article = response.choices[0].message.content
 
+                response_data = {
+                    "ep_title": ep_title,
+                    "ep_link": ep_link,
+                    "ep_author": ep_author,
+                    "ep_image": ep_image,
+                    "ep_unix_time": ep_unix_time,
+                    "generated_article": generated_article
+                }
+
                 # Return the generated article as JSON response
-                return jsonify({"article": generated_article})
+                # return jsonify({"article": generated_article})
+                return jsonify(response_data)
             else:
                 return jsonify({"error": "Failed to download audio file"})
         else:
