@@ -56,6 +56,14 @@
         <h3 id="episode-date"></h3>
     </div>
     <hr class="solid">
+    <div class="details container">
+        <a id="episode-link" href="" target="_blank">
+            <h2 id="episode-title"></h2>    
+        </a>
+        <h3 id="episode-author"></h3>
+        <h3 id="episode-date"></h3>
+    </div>
+    <hr class="solid">
     <div id="article-content" class="main-content container">
         <div id="loading"></div> <!--Come figure this out-->
     
@@ -89,7 +97,7 @@
                     const imgLink = data.ep_image;
                     const time = data.ep_unix_time;
                     const article = data.generated_article;
-                    hideLoading;
+                    hideLoading();
                     document.getElementById('episode-title').innerHTML = title;
                     document.getElementById('episode-link').setAttribute('href', link);
                     document.getElementById('episode-author').innerHTML = author;
