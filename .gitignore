@@ -2,3 +2,5 @@ config.py
 import requests.py
 env/
 venv/
+__pycache__/
+*.pyc
