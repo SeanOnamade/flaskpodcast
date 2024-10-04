@@ -1,2 +1,4 @@
 config.py
 import requests.py
+env/
+venv/
